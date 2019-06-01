@@ -1,5 +1,5 @@
 import { gql } from 'apollo-boost';
-import { ProductsQuery, ProductSortKeys } from './generated/graphql'
+import { ShopifyProductsQueryVariables, ShopifyProductSortKeys } from './types/shopify.type'
 
 const productConnectionFields = gql`
   fragment ProductConnectionFields on ProductConnection {
@@ -30,19 +30,19 @@ const productConnectionFields = gql`
 
 export const productsQuery = gql`
   ${productConnectionFields}
-  query ProductsQuery($query: String!, $sortKey: ProductSortKeys, $reverse: Boolean) {
+  query Products($query: String!, $sortKey: ProductSortKeys, $reverse: Boolean) {
     products(first: 5, query: $query, sortKey: $sortKey, reverse: $reverse) {
       ...ProductConnectionFields
     }
   }
 `;
 
-export function getProducts({query, reverse, sortKey}: ProductsQuery.Variables) {
-  console.log()
+export function getProducts({query, reverse, sortKey}: ShopifyProductsQueryVariables) {
+  console.log({query, reverse, sortKey})
 }
 
 getProducts({
   query: '',
-  sortKey: ProductSortKeys.BestSelling,
+  sortKey: ShopifyProductSortKeys.BestSelling,
   reverse: true
 });

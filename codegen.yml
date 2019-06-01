@@ -5,12 +5,9 @@ schema:
         X-Shopify-Storefront-Access-Token: 078bc5caa0ddebfa89cccb4a1baa1f5c
 documents: "src/**/*.{ts,tsx}"
 generates:
-  src/generated/graphql.ts:
+  src/types/shopify.type.ts:
     plugins:
-      - "typescript-common"
-      - "typescript-client"
+      - typescript
+      - typescript-operations
     config:
-      typesPrefix: I
-  # ./graphql.schema.json:
-  #   plugins:
-  #     - "introspection"
+      typesPrefix: Shopify
